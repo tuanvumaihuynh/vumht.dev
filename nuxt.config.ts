@@ -1,0 +1,65 @@
+// https://nuxt.com/docs/api/configuration/nuxt-config
+const siteUrl = process.env.NUXT_PUBLIC_SITE_URL
+  ?? (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : undefined)
+
+export default defineNuxtConfig({
+  modules: [
+    '@nuxt/eslint',
+    '@nuxt/ui',
+    '@nuxt/image',
+    '@nuxtjs/seo',
+    'motion-v/nuxt'
+  ],
+
+  ssr: true,
+
+  devtools: {
+    enabled: false
+  },
+
+  app: {
+    pageTransition: false
+  },
+
+  css: ['~/assets/css/main.css'],
+
+  site: {
+    ...(siteUrl ? { url: siteUrl } : {}),
+    name: 'Vux',
+    description: 'Software engineer building secure, observable backend systems with Go and cloud infrastructure.'
+  },
+
+  compatibilityDate: '2026-06-30',
+
+  vite: {
+    optimizeDeps: {
+      include: ['@unhead/schema-org/vue']
+    }
+  },
+
+  eslint: {
+    config: {
+      stylistic: {
+        commaDangle: 'never',
+        braceStyle: '1tbs'
+      }
+    }
+  },
+
+  fonts: {
+    families: [
+      { name: 'Geist', provider: 'google' },
+      { name: 'Geist Mono', provider: 'google' }
+    ]
+  },
+
+  ogImage: {
+    enabled: false
+  },
+
+  robots: {
+    disallow: process.env.VERCEL_ENV === 'preview' ? ['/'] : []
+  }
+})
