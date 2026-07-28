@@ -1,70 +1,86 @@
-# Design System: Quiet Canopy
+# Design System: Quiet Index
 
-## 1. Visual Theme & Atmosphere
+## Direction
 
-Quiet Canopy is a restrained systems journal: gallery-airy, confidently
-asymmetric, and calm. Wood-element symbolism appears through deep evergreen,
-muted jade, and branching data paths rather than literal leaf imagery.
+Quiet Index is a restrained engineering notebook: editorial, calm, and useful.
+It borrows the clarity and generous pacing of minimal personal sites without
+copying their exact structure. Vux's identity comes from muted wood-element
+greens, dark mode, and precise technical metadata.
 
-- Density: 4/10
-- Variance: 6/10
-- Motion: 3/10
+- Density: 3/10
+- Visual variance: 3/10
+- Motion: 2/10
 - Voice: precise, warm, technically grounded
 
-## 2. Color Palette & Roles
+## Color
 
-- Paper Canvas (`#F4F6F1`) — light page background
-- Soft Surface (`#FBFCF8`) — elevated content surface
-- Forest Ink (`#17221D`) — primary light-mode text
-- Moss Copy (`#5B665F`) — secondary light-mode text
-- Quiet Line (`#D9E0D8`) — structural dividers
-- Deep Jade (`#2F6B4F`) — the single light-mode accent
-- Night Canopy (`#0F1713`) — dark page background
-- Night Surface (`#151F1A`) — dark elevated surface
-- Mist Ink (`#EDF3EE`) — primary dark-mode text
-- Soft Jade (`#69A884`) — the single dark-mode accent
+Light mode:
 
-No lime, neon, purple, blue glow, metallic palette, or decorative gradients.
+- Paper canvas: `#FAFBF8`
+- Quiet surface: `#F0F3EF`
+- Strong surface: `#E7ECE7`
+- Forest ink: `#202822`
+- Moss copy: `#687169`
+- Quiet line: `#E2E7E1`
+- Deep jade: `#2F6B4F`
 
-## 3. Typography
+Dark mode:
 
-- Display and body: Geist, controlled weight, tight display tracking
-- Metadata and system labels: Geist Mono
-- Display scale: `clamp(3rem, 7vw, 6.25rem)`
-- Body: 17–19px, relaxed leading, maximum 65 characters per line
+- Night canvas: `#111713`
+- Night surface: `#18201B`
+- Strong night surface: `#202B24`
+- Mist ink: `#EDF2EE`
+- Soft copy: `#A4AFA7`
+- Quiet line: `#29342D`
+- Soft jade: `#73A98A`
 
-## 4. Components
+Jade is a status and interaction color, not decoration. There are no gradients,
+neon colors, glows, metallic effects, or literal leaf imagery.
 
-- Buttons are pill-shaped, flat, and tactile. One primary CTA per section.
-- Project entries are alternating editorial rows, not equal card grids.
-- Surfaces use 1px borders and at most a faint canvas-tinted shadow.
-- Navigation is compact, sticky, and keyboard accessible.
+## Typography
 
-## 5. Layout
+- Geist for interface and prose
+- Geist Mono only for dates, stacks, and technical metadata
+- Body baseline: 16px with a relaxed 1.65 line height
+- Page titles: 32–44px, used sparingly
+- Section titles: 23–26px
+- Reading measure: approximately 42rem
 
-- Desktop hero uses a 60/40 asymmetric grid.
-- Content stays within a 72rem container.
-- Multi-column sections collapse to one column below 768px.
-- No overlapping content and no horizontal scrolling.
+Mobile keeps readable type rather than shrinking the entire system.
 
-## 6. Motion
+## Layout
 
-Motion for Vue is the only choreography engine.
+- One centered editorial column: `min(100% - 2rem, 42rem)`
+- Generous section rhythm: roughly 72–112px
+- Static two-line identity header with only a color-mode control
+- Project rows use a quiet hover surface; experience entries have no borders
+- Detail pages remain linear and readable
 
-- Section reveal: opacity and 10px vertical translation
-- Spring baseline: stiffness 100, damping 20
-- Project hover: maximum 3px translation
-- System trace: one slow signal, one loop at a time
-- Global `MotionConfig` respects the operating system reduced-motion setting
+The site does not use a giant hero, a 12-column landing-page grid, sticky glass
+navigation, oversized CTA blocks, or a generic card dashboard.
 
-No parallax, typewriter, scroll-jacking, custom cursor, or continuous shimmer.
+## Interaction
 
-## 7. Banned Patterns
+Motion for Vue is the only choreography library.
 
-- No fabricated metrics or fake system dashboards
-- No three equal cards in a row
-- No generic AI copywriting
-- No oversized logo wall
-- No portrait placeholder or stock photography
-- No rainbow stack badges
-- No decorative terminal window without real content
+- Entry reveal: opacity plus 6px vertical travel
+- Duration: 350ms with a restrained ease-out curve
+- Row hover: background color only, 150ms
+- Global reduced-motion preference is respected
+
+No parallax, scroll-jacking, custom cursor, hover lift, typewriter effect, or
+continuous ambient animation.
+
+## Signature Elements
+
+- A plain text Vux wordmark
+- Compact project metadata without decorative status labels
+- A small static Spotify status in the footer
+- Light and dark modes built from the same muted wood palette
+
+## Content Rules
+
+- No fabricated metrics or unverifiable impact claims
+- Qualgo descriptions remain public, high-level, and implementation-safe
+- No portrait, résumé download, stock imagery, fake terminal, or logo wall
+- Links and repositories are the source of truth

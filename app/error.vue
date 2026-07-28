@@ -14,24 +14,24 @@ function goHome() {
 
 <template>
   <UApp>
-    <main class="page-shell grid min-h-[100dvh] place-items-center py-16">
-      <div class="max-w-2xl text-center">
+    <main class="page-shell flex min-h-[100dvh] items-center">
+      <div class="max-w-lg py-16">
         <p class="eyebrow">
           Error {{ error.statusCode || 500 }}
         </p>
-        <h1 class="page-title mt-6 text-ink">
+        <h1 class="page-title mt-5 text-ink">
           This path does not resolve.
         </h1>
-        <p class="body-copy mx-auto mt-6">
+        <p class="body-copy mt-5">
           {{ error.statusMessage || error.message || 'The requested page could not be found.' }}
         </p>
-        <UButton
-          label="Return home"
-          icon="i-lucide-arrow-left"
-          size="lg"
-          class="mt-9"
+        <button
+          type="button"
+          class="text-link mt-6 text-sm"
           @click="goHome"
-        />
+        >
+          Return home
+        </button>
       </div>
     </main>
   </UApp>
