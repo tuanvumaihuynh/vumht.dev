@@ -31,4 +31,3 @@ Vercel can deploy the repository with framework auto-detection and the default
 - Keep Qualgo descriptions high level.
 - Never invent impact metrics, traffic, latency, or team sizes.
 - Do not add a portrait, CV, age, salary, or other private profile data.
-- Planned writing must remain visibly labeled as planned.

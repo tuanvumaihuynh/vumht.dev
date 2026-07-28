@@ -7,17 +7,17 @@ defineProps<{
 </script>
 
 <template>
-  <div class="grid gap-5 md:grid-cols-12 md:gap-8">
-    <p class="eyebrow md:col-span-3">
+  <div>
+    <p class="section-label">
       {{ eyebrow }}
     </p>
-    <div class="md:col-span-8 md:col-start-5">
-      <h2 class="text-3xl font-semibold tracking-[-0.04em] text-ink sm:text-4xl lg:text-5xl">
+    <div class="mt-4">
+      <h2 class="max-w-[30ch] text-[1.45rem] font-medium leading-8 tracking-[-0.03em] text-ink sm:text-[1.6rem]">
         {{ title }}
       </h2>
       <p
         v-if="description"
-        class="body-copy mt-5"
+        class="body-copy mt-3"
       >
         {{ description }}
       </p>

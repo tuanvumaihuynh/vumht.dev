@@ -10,13 +10,13 @@ const props = withDefaults(defineProps<{
 
 <template>
   <motion.div
-    :initial="{ opacity: 0, y: 10 }"
-    :while-in-view="{ opacity: 1, y: 0 }"
-    :viewport="{ once: true, amount: 0.16 }"
+    :initial="false"
+    :while-in-view="{ y: [4, 0] }"
+    :viewport="{ once: true, amount: 0.12 }"
     :transition="{
-      type: 'spring',
-      stiffness: 100,
-      damping: 20,
+      type: 'tween',
+      duration: 0.35,
+      ease: [0.16, 1, 0.3, 1],
       delay: props.delay
     }"
   >

@@ -2,26 +2,28 @@
 @import "@nuxt/ui";
 
 :root {
-  --vux-canvas: #f4f6f1;
-  --vux-surface: #fbfcf8;
-  --vux-ink: #17221d;
-  --vux-muted: #5b665f;
-  --vux-line: #d9e0d8;
+  --vux-canvas: #fafbf8;
+  --vux-surface: #f0f3ef;
+  --vux-surface-strong: #e7ece7;
+  --vux-ink: #202822;
+  --vux-muted: #687169;
+  --vux-line: #e2e7e1;
   --vux-accent: #2f6b4f;
-  --vux-accent-subtle: #e3ece6;
+  --vux-accent-subtle: #e8f0ea;
   --vux-selection: #cbded1;
   --ui-primary: var(--vux-accent);
   --ui-color-primary-500: var(--vux-accent);
 }
 
 .dark {
-  --vux-canvas: #0f1713;
-  --vux-surface: #151f1a;
-  --vux-ink: #edf3ee;
-  --vux-muted: #a7b4aa;
-  --vux-line: #2b3931;
-  --vux-accent: #69a884;
-  --vux-accent-subtle: #1d3327;
+  --vux-canvas: #111713;
+  --vux-surface: #18201b;
+  --vux-surface-strong: #202b24;
+  --vux-ink: #edf2ee;
+  --vux-muted: #a4afa7;
+  --vux-line: #29342d;
+  --vux-accent: #73a98a;
+  --vux-accent-subtle: #1b3023;
   --vux-selection: #284a37;
 }
 
@@ -31,6 +33,7 @@
 
   --color-canvas: var(--vux-canvas);
   --color-surface: var(--vux-surface);
+  --color-surface-strong: var(--vux-surface-strong);
   --color-ink: var(--vux-ink);
   --color-copy-muted: var(--vux-muted);
   --color-line: var(--vux-line);
@@ -41,7 +44,7 @@
   --color-green-100: #e3ece6;
   --color-green-200: #c7dace;
   --color-green-300: #a2c2ad;
-  --color-green-400: #69a884;
+  --color-green-400: #73a98a;
   --color-green-500: #2f6b4f;
   --color-green-600: #285b44;
   --color-green-700: #234b39;
@@ -61,6 +64,8 @@
     background: var(--vux-canvas);
     color: var(--vux-ink);
     font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
   }
@@ -72,57 +77,95 @@
 
   :focus-visible {
     outline: 2px solid var(--vux-accent);
-    outline-offset: 4px;
+    outline-offset: 3px;
   }
 
   a,
-  button {
+  button,
+  summary {
     -webkit-tap-highlight-color: transparent;
   }
 }
 
 @layer components {
   .page-shell {
-    width: min(100% - 2rem, 72rem);
+    width: min(100% - 3rem, 42rem);
     margin-inline: auto;
   }
 
+  .page-stack {
+    padding-block: clamp(4.5rem, 10vw, 7rem);
+  }
+
+  .content-section {
+    margin-top: clamp(4.5rem, 10vw, 7rem);
+    scroll-margin-top: 2rem;
+  }
+
   .section-space {
-    padding-block: clamp(4.5rem, 10vw, 8.5rem);
+    padding-block: clamp(3.75rem, 9vw, 6rem);
   }
 
-  .display-title {
-    font-size: clamp(3rem, 7vw, 6.25rem);
-    font-weight: 560;
-    letter-spacing: -0.055em;
-    line-height: 0.96;
-  }
-
+  .display-title,
   .page-title {
-    font-size: clamp(2.75rem, 6vw, 5.25rem);
+    max-width: 18ch;
+    font-size: clamp(2rem, 6vw, 2.75rem);
     font-weight: 560;
-    letter-spacing: -0.05em;
-    line-height: 1;
+    letter-spacing: -0.045em;
+    line-height: 1.08;
   }
 
   .body-copy {
     max-width: 65ch;
     color: var(--vux-muted);
-    font-size: clamp(1.05rem, 1.5vw, 1.18rem);
-    line-height: 1.72;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .lead-copy {
+    color: var(--vux-ink);
+    font-size: clamp(1.075rem, 2vw, 1.18rem);
+    letter-spacing: -0.012em;
+    line-height: 1.65;
+  }
+
+  .section-label {
+    color: var(--vux-ink);
+    font-size: 1rem;
+    font-weight: 560;
+    letter-spacing: -0.018em;
+    line-height: 1.5;
   }
 
   .eyebrow {
     color: var(--vux-accent);
     font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
   }
 
-  .hairline {
-    border-color: var(--vux-line);
+  .editorial-row {
+    margin-inline: -0.75rem;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .editorial-row-link:hover {
+    background: var(--vux-surface);
+  }
+
+  .text-link {
+    color: var(--vux-ink);
+    text-decoration-color: var(--vux-line);
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25rem;
+  }
+
+  .text-link:hover {
+    color: var(--vux-accent);
+    text-decoration-color: var(--vux-accent);
   }
 }
 

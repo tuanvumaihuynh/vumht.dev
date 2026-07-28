@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {
-  aboutStory,
   education,
   identity,
   principles
@@ -13,39 +12,22 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="page-shell py-16 sm:py-20 lg:py-28">
-    <header class="grid gap-10 md:grid-cols-12 md:items-end">
-      <div class="md:col-span-8">
-        <p class="eyebrow">
+  <div class="page-shell page-stack">
+    <MotionReveal>
+      <header>
+        <p class="section-label">
           About
         </p>
-        <h1 class="page-title mt-6 text-ink">
-          I care about systems I can reason about.
+        <h1 class="page-title mt-5 text-ink">
+          Software engineer building reliable backend systems.
         </h1>
-      </div>
-      <p class="body-copy text-base md:col-span-4">
-        I’m Vux, a software engineer in Ho Chi Minh City working across backend systems, infrastructure, and observability.
-      </p>
-    </header>
+        <p class="body-copy mt-5">
+          I’m Vux, based in Ho Chi Minh City and currently working at Qualgo.
+        </p>
+      </header>
+    </MotionReveal>
 
-    <section class="section-space grid gap-8 border-b border-line md:grid-cols-12">
-      <p class="eyebrow md:col-span-3">
-        Story
-      </p>
-      <div class="space-y-7 md:col-span-8 md:col-start-5">
-        <MotionReveal
-          v-for="(paragraph, index) in aboutStory"
-          :key="paragraph"
-          :delay="index * 0.04"
-        >
-          <p class="text-xl leading-9 tracking-[-0.015em] text-ink sm:text-2xl sm:leading-10">
-            {{ paragraph }}
-          </p>
-        </MotionReveal>
-      </div>
-    </section>
-
-    <section class="section-space border-b border-line">
+    <section class="content-section">
       <MotionReveal>
         <SectionHeading
           eyebrow="Principles"
@@ -53,18 +35,20 @@ useSeoMeta({
         />
       </MotionReveal>
 
-      <div class="mt-14 grid border-t border-line md:grid-cols-2">
+      <div class="mt-8">
         <MotionReveal
           v-for="(principle, index) in principles"
           :key="principle.title"
-          :delay="index * 0.04"
+          :delay="index * 0.035"
         >
-          <article class="border-b border-line py-8 md:min-h-52 md:p-9 md:odd:border-r">
-            <span class="font-mono text-xs text-accent">0{{ index + 1 }}</span>
-            <h2 class="mt-8 text-2xl font-semibold tracking-[-0.035em] text-ink">
-              {{ principle.title }}
-            </h2>
-            <p class="mt-4 max-w-[44ch] leading-7 text-copy-muted">
+          <article class="editorial-row border-t border-line">
+            <div class="flex items-baseline justify-between gap-5">
+              <h2 class="font-medium tracking-[-0.018em] text-ink">
+                {{ principle.title }}
+              </h2>
+              <span class="font-mono text-[0.66rem] text-accent">0{{ index + 1 }}</span>
+            </div>
+            <p class="mt-1.5 text-[0.92rem] leading-6 text-copy-muted">
               {{ principle.description }}
             </p>
           </article>
@@ -72,64 +56,56 @@ useSeoMeta({
       </div>
     </section>
 
-    <section class="section-space grid gap-12 border-b border-line md:grid-cols-2">
+    <section class="content-section">
       <MotionReveal>
-        <div>
-          <p class="eyebrow">
-            Education
-          </p>
-          <h2 class="mt-5 text-2xl font-semibold tracking-[-0.035em] text-ink">
-            {{ education.institution }}
-          </h2>
-          <p class="mt-2 text-accent">
-            {{ education.program }}
-          </p>
-          <p class="mt-1 font-mono text-xs text-copy-muted">
-            {{ education.period }}
-          </p>
-          <p class="mt-5 max-w-[52ch] leading-7 text-copy-muted">
-            {{ education.summary }}
-          </p>
-        </div>
-      </MotionReveal>
-
-      <MotionReveal :delay="0.05">
-        <div>
-          <p class="eyebrow">
-            Currently exploring
-          </p>
-          <h2 class="mt-5 text-2xl font-semibold tracking-[-0.035em] text-ink">
-            Swift and LLM engineering.
-          </h2>
-          <p class="mt-5 max-w-[52ch] leading-7 text-copy-muted">
-            Alongside deeper work in Go, cloud infrastructure, and distributed systems. Away from the terminal, I’m usually playing badminton, reading, or getting the sleep I postponed while debugging something.
-          </p>
-        </div>
+        <h2 class="section-label">
+          Education
+        </h2>
+        <h2 class="mt-4 font-medium tracking-[-0.018em] text-ink">
+          {{ education.institution }}
+        </h2>
+        <p class="mt-1 text-[0.92rem] text-accent">
+          {{ education.program }}
+        </p>
+        <p class="mt-1 font-mono text-[0.68rem] text-copy-muted">
+          {{ education.period }}
+        </p>
+        <p class="body-copy mt-4">
+          {{ education.summary }}
+        </p>
       </MotionReveal>
     </section>
 
-    <MotionReveal>
-      <section class="section-space grid gap-8 md:grid-cols-12 md:items-end">
-        <div class="md:col-span-8">
-          <p class="eyebrow">
-            Contact
-          </p>
-          <h2 class="mt-5 text-4xl font-semibold tracking-[-0.05em] text-ink sm:text-5xl">
-            Let’s talk systems.
-          </h2>
-          <p class="body-copy mt-5">
-            I’m always happy to meet people building thoughtful software or exploring a difficult engineering problem.
-          </p>
-        </div>
-        <div class="md:col-span-4 md:flex md:justify-end">
-          <UButton
-            :to="`mailto:${identity.email}`"
-            label="Send me an email"
-            trailing-icon="i-lucide-arrow-up-right"
-            size="lg"
-          />
-        </div>
-      </section>
-    </MotionReveal>
+    <section class="content-section">
+      <MotionReveal>
+        <h2 class="section-label">
+          Currently exploring
+        </h2>
+        <p class="lead-copy mt-4">
+          Swift and applied LLM engineering, alongside deeper work in Go, cloud
+          infrastructure, and distributed systems.
+        </p>
+        <p class="body-copy mt-4">
+          Away from the terminal, I’m usually playing badminton, reading, or
+          getting the sleep I postponed while debugging something.
+        </p>
+      </MotionReveal>
+    </section>
+
+    <section class="content-section">
+      <MotionReveal>
+        <h2 class="section-label">
+          Contact
+        </h2>
+        <p class="body-copy mt-4">
+          I’m always happy to meet people building thoughtful software or
+          exploring a difficult engineering problem. Write to
+          <a
+            :href="`mailto:${identity.email}`"
+            class="text-link"
+          >{{ identity.email }}</a>.
+        </p>
+      </MotionReveal>
+    </section>
   </div>
 </template>
