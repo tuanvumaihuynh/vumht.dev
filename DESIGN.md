@@ -1,86 +1,58 @@
-# Design System: Quiet Index
+# Design System: Quiet Pine
 
 ## Direction
 
-Quiet Index is a restrained engineering notebook: editorial, calm, and useful.
-It borrows the clarity and generous pacing of minimal personal sites without
-copying their exact structure. Vux's identity comes from muted wood-element
-greens, dark mode, and precise technical metadata.
+Quiet Pine is a restrained engineering index inspired by `egoist.dev` while retaining Vux's identity: a neutral carbon canvas punctuated by calibrated Pine Emerald signals, official product emblems, and generous breathing room.
 
-- Density: 3/10
-- Visual variance: 3/10
+- Density: 2/10
+- Visual variance: 2/10
 - Motion: 2/10
-- Voice: precise, warm, technically grounded
+- Voice: direct, calm, technically grounded
 
 ## Color
 
-Light mode:
+Dark-only palette (`color-scheme: dark`):
 
-- Paper canvas: `#FAFBF8`
-- Quiet surface: `#F0F3EF`
-- Strong surface: `#E7ECE7`
-- Forest ink: `#202822`
-- Moss copy: `#687169`
-- Quiet line: `#E2E7E1`
-- Deep jade: `#2F6B4F`
+- Carbon canvas: `#0F1110`
+- Card surface: `#161917`
+- Quiet surface: `#181C1A`
+- Strong surface: `#202623`
+- Primary ink: `#ECEEEA`
+- Muted copy: `#8B938E`
+- Faint metadata: `#58605B`
+- Hairline border: `#222724`
+- Pine Emerald accent: `#3ECF8E`
 
-Dark mode:
-
-- Night canvas: `#111713`
-- Night surface: `#18201B`
-- Strong night surface: `#202B24`
-- Mist ink: `#EDF2EE`
-- Soft copy: `#A4AFA7`
-- Quiet line: `#29342D`
-- Soft jade: `#73A98A`
-
-Jade is a status and interaction color, not decoration. There are no gradients,
-neon colors, glows, metallic effects, or literal leaf imagery.
+Green acts strictly as a calibrated signal and subtle ambient wash—never heavy gradients or decorative fills.
 
 ## Typography
 
-- Geist for interface and prose
-- Geist Mono only for dates, stacks, and technical metadata
-- Body baseline: 16px with a relaxed 1.65 line height
-- Page titles: 32–44px, used sparingly
-- Section titles: 23–26px
-- Reading measure: approximately 42rem
-
-Mobile keeps readable type rather than shrinking the entire system.
+- Geist for interface, prose, and `tabular-nums` experience periods
+- Geist Mono only for minimal error codes and technical metadata
+- Bio and prose: `0.975rem` with relaxed `1.68` line height and single-color primary ink
+- Section labels: `0.84rem` muted prose weight (`400`)
 
 ## Layout
 
-- One centered editorial column: `min(100% - 2rem, 42rem)`
-- Generous section rhythm: roughly 72–112px
-- Static two-line identity header with only a color-mode control
-- Project rows use a quiet hover surface; experience entries have no borders
-- Detail pages remain linear and readable
-
-The site does not use a giant hero, a 12-column landing-page grid, sticky glass
-navigation, oversized CTA blocks, or a generic card dashboard.
+- Single narrow centered column: `min(100%, 36rem)` with `1.25rem` side padding (`536px` inner reading measure)
+- Static single-row text header (`Vux` wordmark on the left; `About` and `GitHub` on the right, zero icons and no theme toggle)
+- Projects grid: 2-column cards on desktop featuring official product logo icons (`Runcoil`, `Stint`), with cursor-tracking border spotlight and gentle ambient wash
+- Experience list: single-line rows with company, role, and sans-serif `tabular-nums` period using focus-dimming on hover
+- Static Spotify status and links in the footer
+- Secondary `/about` page matching `egoist.dev/about` with short prose and a bulleted `Social` list
 
 ## Interaction
 
-Motion for Vue is the only choreography library.
+Pure CSS choreography with `@media (prefers-reduced-motion: reduce)` support:
 
-- Entry reveal: opacity plus 6px vertical travel
-- Duration: 350ms with a restrained ease-out curve
-- Row hover: background color only, 150ms
-- Global reduced-motion preference is respected
-
-No parallax, scroll-jacking, custom cursor, hover lift, typewriter effect, or
-continuous ambient animation.
-
-## Signature Elements
-
-- A plain text Vux wordmark
-- Compact project metadata without decorative status labels
-- A small static Spotify status in the footer
-- Light and dark modes built from the same muted wood palette
+- Entry reveal: staggered `0.65s` cubic-bezier opacity + `6px` vertical travel + subtle `2px` blur clear
+- Project cards: `0.5s` ease-out cursor spotlight (`::before` + `::after` mask), gentle `-2px` lift, and icon tilt
+- Experience list: sibling opacity dimming (`0.4`) on hover
 
 ## Content Rules
 
 - No fabricated metrics or unverifiable impact claims
 - Qualgo descriptions remain public, high-level, and implementation-safe
+- Only official product logos (`public/projects/runcoil.svg`, `public/projects/stint.svg`); no extra decorative icons
 - No portrait, résumé download, stock imagery, fake terminal, or logo wall
 - Links and repositories are the source of truth

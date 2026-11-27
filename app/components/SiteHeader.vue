@@ -1,43 +1,38 @@
 <script setup lang="ts">
-const colorMode = useColorMode()
-
-const colorModeIcon = computed(() => colorMode.value === 'dark'
-  ? 'i-lucide-sun'
-  : 'i-lucide-moon')
-
-function toggleColorMode() {
-  colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
-}
+import { identity } from '~/data/portfolio'
 </script>
 
 <template>
-  <header class="page-shell pt-12 sm:pt-16">
+  <header class="page-shell pt-14 sm:pt-16">
     <div class="flex items-center justify-between gap-5">
       <NuxtLink
         to="/"
         aria-label="Vux — Home"
-        class="group block py-1"
+        class="text-[0.95rem] font-medium tracking-[-0.02em] text-ink"
       >
-        <span class="block text-[0.95rem] font-medium leading-5 tracking-[-0.02em] text-ink">
-          Vux
-        </span>
-        <span class="block text-[0.78rem] leading-5 text-copy-muted group-hover:text-ink">
-          Software Engineer
-        </span>
+        Vux
       </NuxtLink>
 
-      <button
-        type="button"
-        class="grid size-11 shrink-0 place-items-center rounded-lg text-copy-muted transition-colors hover:bg-surface hover:text-ink"
-        aria-label="Toggle color mode"
-        :aria-pressed="colorMode.value === 'dark'"
-        @click="toggleColorMode"
+      <nav
+        aria-label="Primary"
+        class="flex items-center gap-5 text-[0.875rem] text-copy-muted"
       >
-        <UIcon
-          :name="colorModeIcon"
-          class="block size-4"
-        />
-      </button>
+        <NuxtLink
+          to="/about"
+          class="transition-colors hover:text-ink"
+          active-class="text-ink"
+        >
+          About
+        </NuxtLink>
+        <a
+          :href="identity.github"
+          target="_blank"
+          rel="noreferrer"
+          class="transition-colors hover:text-ink"
+        >
+          GitHub
+        </a>
+      </nav>
     </div>
   </header>
 </template>

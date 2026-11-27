@@ -30,7 +30,11 @@ export default defineNuxtConfig({
     url: siteUrl,
     indexable: !isPreview,
     name: 'Vux',
-    description: 'Software engineer building secure, observable backend systems with Go and cloud infrastructure.'
+    description: 'Software engineer building software and shipping small, focused products.'
+  },
+
+  ui: {
+    colorMode: false
   },
 
   compatibilityDate: '2026-06-30',

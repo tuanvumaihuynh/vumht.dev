@@ -1,120 +1,58 @@
 <script setup lang="ts">
 import {
-  expertise,
+  bio,
   experiences,
-  identity,
   projects
 } from '~/data/portfolio'
 
 useSeoMeta({
-  title: 'Software Engineer',
-  description: 'Vux builds reliable backend systems with Go, distributed infrastructure, and observability.',
-  ogTitle: 'Vux — Software Engineer',
-  ogDescription: 'Secure backend systems, distributed workloads, model-serving infrastructure, and observability.'
+  title: 'Vux',
+  description: bio,
+  ogTitle: 'Vux',
+  ogDescription: bio
 })
 </script>
 
 <template>
-  <div class="page-shell">
-    <section class="mt-[clamp(5.5rem,12vw,7.5rem)]">
-      <MotionReveal>
-        <h1 class="section-label">
-          Now
-        </h1>
-        <p class="mt-4 text-[0.92rem] leading-6 text-copy-muted">
-          I build reliable backend systems at Qualgo. Currently learning Swift and applied LLM engineering.
-        </p>
-      </MotionReveal>
+  <div class="page-shell reveal mt-20 sm:mt-24">
+    <section>
+      <h1 class="sr-only">
+        Vux — Software Engineer
+      </h1>
+      <p class="max-w-[46ch] text-[0.975rem] leading-[1.68] tracking-[-0.012em] text-ink">
+        {{ bio }}
+      </p>
     </section>
 
-    <section class="content-section">
-      <MotionReveal>
-        <h2 class="section-label">
-          Projects
-        </h2>
-      </MotionReveal>
+    <section class="mt-16">
+      <h2 class="mb-4 text-[0.84rem] font-normal text-copy-muted">
+        Projects
+      </h2>
 
-      <div class="mt-6">
-        <ProjectRow
-          v-for="(project, index) in projects"
-          :key="project.repository"
+      <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <ProjectCard
+          v-for="project in projects"
+          :key="project.url"
           :project="project"
-          :index="index"
         />
       </div>
     </section>
 
     <section
       id="experience"
-      class="content-section scroll-mt-8"
+      class="mt-16 scroll-mt-8"
     >
-      <MotionReveal>
-        <h2 class="section-label">
-          Experience
-        </h2>
-      </MotionReveal>
+      <h2 class="mb-3 text-[0.84rem] font-normal text-copy-muted">
+        Experience
+      </h2>
 
-      <div class="mt-6 space-y-4">
+      <ul class="group/list">
         <ExperienceItem
-          v-for="(item, index) in experiences"
-          :key="item.company"
+          v-for="item in experiences"
+          :key="`${item.company}-${item.period}`"
           :item="item"
-          :index="index"
         />
-      </div>
-    </section>
-
-    <section class="content-section">
-      <MotionReveal>
-        <h2 class="section-label">
-          Strengths
-        </h2>
-      </MotionReveal>
-
-      <div class="mt-6 space-y-2">
-        <MotionReveal
-          v-for="(item, index) in expertise"
-          :key="item.title"
-          :delay="index * 0.035"
-        >
-          <article class="py-3">
-            <h3 class="font-medium tracking-[-0.018em] text-ink">
-              {{ item.title }}
-            </h3>
-            <p class="mt-1.5 text-[0.92rem] leading-6 text-copy-muted">
-              {{ item.description }}
-            </p>
-          </article>
-        </MotionReveal>
-      </div>
-    </section>
-
-    <section class="content-section">
-      <MotionReveal>
-        <h2 class="section-label">
-          Elsewhere
-        </h2>
-        <p class="body-copy mt-4">
-          Find me on
-          <a
-            :href="identity.github"
-            target="_blank"
-            rel="noreferrer"
-            class="text-link"
-          >GitHub</a>,
-          <a
-            :href="identity.linkedin"
-            target="_blank"
-            rel="noreferrer"
-            class="text-link"
-          >LinkedIn</a>,
-          or email
-          <a
-            :href="`mailto:${identity.email}`"
-            class="text-link"
-          >{{ identity.email }}</a>.
-        </p>
-      </MotionReveal>
+      </ul>
     </section>
   </div>
 </template>

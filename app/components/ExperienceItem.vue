@@ -3,24 +3,19 @@ import type { ExperienceItem } from '~/data/portfolio'
 
 defineProps<{
   item: ExperienceItem
-  index: number
 }>()
 </script>
 
 <template>
-  <MotionReveal :delay="index * 0.035">
-    <article class="py-2">
-      <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
-        <h3 class="font-medium tracking-[-0.018em] text-ink">
-          {{ item.role }} <span class="font-normal text-copy-muted">at {{ item.company }}</span>
-        </h3>
-        <p class="shrink-0 font-mono text-[0.68rem] text-copy-muted">
-          {{ item.period }}
-        </p>
+  <li>
+    <div class="flex flex-col gap-0.5 py-1.5 transition-opacity duration-200 group-hover/list:opacity-40 hover:!opacity-100 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+      <div class="min-w-0 text-[0.9rem] leading-6">
+        <span class="font-medium tracking-[-0.015em] text-ink">{{ item.company }}</span>
+        <span class="ml-2 text-[0.86rem] text-copy-muted">{{ item.role }}</span>
       </div>
-      <p class="mt-1 font-mono text-[0.68rem] leading-5 text-copy-muted">
-        {{ item.location }}
-      </p>
-    </article>
-  </MotionReveal>
+      <span class="shrink-0 text-[0.82rem] tabular-nums text-copy-faint">
+        {{ item.period }}
+      </span>
+    </div>
+  </li>
 </template>

@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="97 97 830 830" role="img" aria-label="Stint">
+  <title>Stint</title>
+  <defs>
+    <linearGradient id="stint-chassis-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2F333E" />
+      <stop offset="48%" stop-color="#1B1E26" />
+      <stop offset="100%" stop-color="#101217" />
+    </linearGradient>
+    <linearGradient id="stint-bezel-rim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.36)" />
+      <stop offset="28%" stop-color="rgba(255,255,255,0.09)" />
+      <stop offset="74%" stop-color="rgba(0,0,0,0.24)" />
+      <stop offset="100%" stop-color="rgba(0,0,0,0.58)" />
+    </linearGradient>
+    <radialGradient id="stint-top-sheen" cx="50%" cy="13%" r="65%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.10)" />
+      <stop offset="100%" stop-color="rgba(255,255,255,0)" />
+    </radialGradient>
+    <radialGradient id="stint-well-bg" cx="50%" cy="38%" r="68%">
+      <stop offset="0%" stop-color="#171A21" />
+      <stop offset="100%" stop-color="#0B0D11" />
+    </radialGradient>
+    <linearGradient id="stint-silver-metal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8F9FB" />
+      <stop offset="55%" stop-color="#DFE3EA" />
+      <stop offset="100%" stop-color="#B4BCC8" />
+    </linearGradient>
+    <linearGradient id="stint-jade-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#14D292" />
+      <stop offset="52%" stop-color="#00B87C" />
+      <stop offset="100%" stop-color="#009B68" />
+    </linearGradient>
+    <path id="stint-squircle-outer" d="M 350 100 L 674 100 C 836 100, 924 188, 924 350 L 924 674 C 924 836, 836 924, 674 924 L 350 924 C 188 924, 100 836, 100 674 L 100 350 C 100 188, 188 100, 350 100 Z" />
+    <path id="stint-squircle-inner" d="M 355 111 L 669 111 C 827 111, 913 197, 913 355 L 913 669 C 913 827, 827 913, 669 913 L 355 913 C 197 913, 111 827, 111 669 L 111 355 C 111 197, 197 111, 355 111 Z" />
+  </defs>
+  <use href="#stint-squircle-outer" fill="url(#stint-chassis-bg)" stroke="rgba(0,0,0,0.72)" stroke-width="6" />
+  <use href="#stint-squircle-outer" fill="url(#stint-top-sheen)" />
+  <use href="#stint-squircle-inner" fill="none" stroke="url(#stint-bezel-rim)" stroke-width="9" />
+  <circle cx="512" cy="512" r="335" fill="none" stroke="rgba(0,0,0,0.52)" stroke-width="10" />
+  <circle cx="512" cy="512" r="324" fill="url(#stint-well-bg)" stroke="rgba(255,255,255,0.075)" stroke-width="7" />
+  <g stroke="rgba(255,255,255,0.34)" stroke-width="9.5" stroke-linecap="round">
+    <line x1="512" y1="201" x2="512" y2="226" />
+    <line x1="823" y1="512" x2="798" y2="512" />
+    <line x1="512" y1="823" x2="512" y2="798" />
+    <line x1="201" y1="512" x2="226" y2="512" />
+  </g>
+  <g stroke="rgba(255,255,255,0.15)" stroke-width="6" stroke-linecap="round">
+    <line x1="660.5" y1="254.8" x2="667.5" y2="242.7" />
+    <line x1="769.2" y1="363.5" x2="781.3" y2="356.5" />
+    <line x1="769.2" y1="660.5" x2="781.3" y2="667.5" />
+    <line x1="660.5" y1="769.2" x2="667.5" y2="781.3" />
+    <line x1="363.5" y1="769.2" x2="356.5" y2="781.3" />
+    <line x1="254.8" y1="660.5" x2="242.7" y2="667.5" />
+    <line x1="254.8" y1="363.5" x2="242.7" y2="356.5" />
+    <line x1="363.5" y1="254.8" x2="356.5" y2="242.7" />
+  </g>
+  <circle cx="512" cy="512" r="250" fill="none" stroke="#20242E" stroke-width="46" />
+  <circle cx="512" cy="512" r="158" fill="none" stroke="#1B1F28" stroke-width="46" />
+  <path d="M 512 262 A 250 250 0 1 1 320.49 672.70" fill="none" stroke="url(#stint-silver-metal)" stroke-width="46" stroke-linecap="butt" />
+  <path d="M 512 670 A 158 158 0 1 1 566.04 363.53" fill="none" stroke="url(#stint-jade-grad)" stroke-width="46" stroke-linecap="butt" />
+  <line x1="618.1" y1="405.9" x2="719.9" y2="304.1" stroke="#0E1015" stroke-width="44" stroke-linecap="round" />
+  <line x1="512" y1="512" x2="711.4" y2="312.6" stroke="url(#stint-jade-grad)" stroke-width="20" stroke-linecap="round" />
+  <circle cx="512" cy="516" r="40" fill="rgba(0,0,0,0.35)" />
+  <circle cx="512" cy="512" r="38" fill="url(#stint-silver-metal)" />
+  <circle cx="512" cy="512" r="16" fill="#12141A" />
+  <circle cx="507" cy="507" r="3.5" fill="rgba(255,255,255,0.22)" />
+</svg>

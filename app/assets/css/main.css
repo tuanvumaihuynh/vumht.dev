@@ -1,30 +1,30 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
-:root {
-  --vux-canvas: #fafbf8;
-  --vux-surface: #f0f3ef;
-  --vux-surface-strong: #e7ece7;
-  --vux-ink: #202822;
-  --vux-muted: #687169;
-  --vux-line: #e2e7e1;
-  --vux-accent: #2f6b4f;
-  --vux-accent-subtle: #e8f0ea;
-  --vux-selection: #cbded1;
-  --ui-primary: var(--vux-accent);
-  --ui-color-primary-500: var(--vux-accent);
+@property --ambient {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #3ecf8e;
 }
 
-.dark {
-  --vux-canvas: #111713;
-  --vux-surface: #18201b;
-  --vux-surface-strong: #202b24;
-  --vux-ink: #edf2ee;
-  --vux-muted: #a4afa7;
-  --vux-line: #29342d;
-  --vux-accent: #73a98a;
-  --vux-accent-subtle: #1b3023;
-  --vux-selection: #284a37;
+:root {
+  color-scheme: dark;
+  --vux-canvas: #0f1110;
+  --vux-card: #161917;
+  --vux-surface: #181c1a;
+  --vux-surface-strong: #202623;
+  --vux-ink: #eceeea;
+  --vux-muted: #8b938e;
+  --vux-faint: #58605b;
+  --vux-line: #222724;
+  --vux-accent: #3ecf8e;
+  --vux-accent-subtle: #14221c;
+  --vux-selection: color-mix(in srgb, #3ecf8e 24%, transparent);
+  --ambient: #3ecf8e;
+  --ambient-strength: 12%;
+  --ui-primary: var(--vux-accent);
+  --ui-color-primary-500: var(--vux-accent);
+  transition: --ambient 0.6s ease-out;
 }
 
 @theme inline {
@@ -32,25 +32,27 @@
   --font-mono: 'Geist Mono', ui-monospace, monospace;
 
   --color-canvas: var(--vux-canvas);
+  --color-card: var(--vux-card);
   --color-surface: var(--vux-surface);
   --color-surface-strong: var(--vux-surface-strong);
   --color-ink: var(--vux-ink);
   --color-copy-muted: var(--vux-muted);
+  --color-copy-faint: var(--vux-faint);
   --color-line: var(--vux-line);
   --color-accent: var(--vux-accent);
   --color-accent-subtle: var(--vux-accent-subtle);
 
-  --color-green-50: #f1f7f3;
-  --color-green-100: #e3ece6;
-  --color-green-200: #c7dace;
-  --color-green-300: #a2c2ad;
-  --color-green-400: #73a98a;
-  --color-green-500: #2f6b4f;
-  --color-green-600: #285b44;
-  --color-green-700: #234b39;
-  --color-green-800: #28533f;
-  --color-green-900: #234435;
-  --color-green-950: #10261d;
+  --color-green-50: #edfcf4;
+  --color-green-100: #d3f8e3;
+  --color-green-200: #aaefcc;
+  --color-green-300: #73e1ae;
+  --color-green-400: #3ecf8e;
+  --color-green-500: #13795b;
+  --color-green-600: #0f684e;
+  --color-green-700: #0d5440;
+  --color-green-800: #0c4434;
+  --color-green-900: #0b382c;
+  --color-green-950: #06211a;
 }
 
 @layer base {
@@ -66,6 +68,7 @@
     font-family: var(--font-sans);
     font-size: 1rem;
     line-height: 1.65;
+    letter-spacing: -0.011em;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
   }
@@ -73,6 +76,10 @@
   ::selection {
     background: var(--vux-selection);
     color: var(--vux-ink);
+  }
+
+  [data-ambient] ::selection {
+    background: color-mix(in srgb, var(--ambient) 22%, transparent);
   }
 
   :focus-visible {
@@ -88,71 +95,91 @@
 }
 
 @layer components {
+  .ambient {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.45;
+    transition: opacity 0.7s ease-out;
+    background:
+      radial-gradient(65% 40% at 50% 0%, color-mix(in srgb, var(--ambient) var(--ambient-strength), transparent), transparent 72%),
+      radial-gradient(35% 28% at 88% 100%, color-mix(in srgb, var(--ambient) calc(var(--ambient-strength) * 0.45), transparent), transparent 70%);
+  }
+
+  [data-ambient] .ambient {
+    opacity: 1;
+  }
+
   .page-shell {
-    width: min(100% - 3rem, 42rem);
+    width: min(100%, 36rem);
+    padding-inline: 1.25rem;
     margin-inline: auto;
   }
 
-  .page-stack {
-    padding-block: clamp(4.5rem, 10vw, 7rem);
+  .project-card {
+    --x: 50%;
+    --y: 0%;
   }
 
-  .content-section {
-    margin-top: clamp(4.5rem, 10vw, 7rem);
-    scroll-margin-top: 2rem;
+  .project-card::before,
+  .project-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
   }
 
-  .section-space {
-    padding-block: clamp(3.75rem, 9vw, 6rem);
+  .project-card::before {
+    z-index: -1;
+    background: radial-gradient(
+      240px circle at var(--x) var(--y),
+      color-mix(in srgb, var(--card-accent) 12%, transparent),
+      transparent 70%
+    );
   }
 
-  .display-title,
-  .page-title {
-    max-width: 18ch;
-    font-size: clamp(2rem, 6vw, 2.75rem);
-    font-weight: 560;
-    letter-spacing: -0.045em;
-    line-height: 1.08;
+  .project-card::after {
+    padding: 1px;
+    background: radial-gradient(
+      180px circle at var(--x) var(--y),
+      color-mix(in srgb, var(--card-accent) 65%, transparent),
+      transparent 70%
+    );
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
   }
 
-  .body-copy {
-    max-width: 65ch;
-    color: var(--vux-muted);
-    font-size: 1rem;
-    line-height: 1.7;
+  .project-card:hover {
+    box-shadow:
+      0 1px 2px #00000008,
+      0 12px 32px -16px color-mix(in srgb, var(--card-accent) 45%, transparent);
   }
 
-  .lead-copy {
-    color: var(--vux-ink);
-    font-size: clamp(1.075rem, 2vw, 1.18rem);
-    letter-spacing: -0.012em;
-    line-height: 1.65;
+  .project-card:hover::before,
+  .project-card:hover::after {
+    opacity: 1;
   }
 
-  .section-label {
-    color: var(--vux-ink);
-    font-size: 1rem;
-    font-weight: 560;
-    letter-spacing: -0.018em;
-    line-height: 1.5;
+  .project-icon {
+    box-shadow:
+      0 1px 2px rgb(0 0 0 / 0.12),
+      0 2px 6px -2px rgb(0 0 0 / 0.16);
+    transition:
+      transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1.2),
+      box-shadow 0.45s ease-out;
   }
 
-  .eyebrow {
-    color: var(--vux-accent);
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.03em;
-  }
-
-  .editorial-row {
-    margin-inline: -0.75rem;
-    border-radius: 0.5rem;
-    padding: 0.75rem;
-  }
-
-  .editorial-row-link:hover {
-    background: var(--vux-surface);
+  .project-card:hover .project-icon {
+    transform: translateY(-2px) rotate(-3deg) scale(1.05);
+    box-shadow:
+      0 1px 2px rgb(0 0 0 / 0.16),
+      0 10px 20px -8px color-mix(in srgb, var(--card-accent) 55%, transparent);
   }
 
   .text-link {
@@ -161,6 +188,7 @@
     text-decoration-line: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 0.25rem;
+    transition: color 150ms ease, text-decoration-color 150ms ease;
   }
 
   .text-link:hover {
@@ -169,8 +197,50 @@
   }
 }
 
+@keyframes reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+    filter: blur(2px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal > * {
+    animation: 0.65s cubic-bezier(0.2, 0.7, 0.2, 1) both reveal;
+  }
+
+  .reveal > :nth-child(2) {
+    animation-delay: 60ms;
+  }
+
+  .reveal > :nth-child(3) {
+    animation-delay: 120ms;
+  }
+
+  .reveal > :nth-child(4) {
+    animation-delay: 180ms;
+  }
+
+  .reveal > :nth-child(5) {
+    animation-delay: 240ms;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  :root,
+  .ambient,
+  .project-card,
+  .project-icon {
+    transition: none;
+  }
+
+  .project-card:hover,
+  .project-card:hover .project-icon {
+    transform: none;
   }
 }
