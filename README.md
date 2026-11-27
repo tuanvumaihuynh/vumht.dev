@@ -1,7 +1,7 @@
 # Vux Portfolio
 
 The English-first personal portfolio of Vux, built with Nuxt 4, Nuxt UI,
-Tailwind CSS, and Motion for Vue.
+Tailwind CSS, and Motion for Vue, hosted on Cloudflare Workers.
 
 ## Local development
 
@@ -16,15 +16,18 @@ runtime LinkedIn or GitHub sync.
 
 ## Production
 
+The site is fully prerendered (`nuxt generate`) and served as static assets
+by a Cloudflare Worker at <https://vumht.dev>. See `wrangler.jsonc`.
+
 ```bash
-pnpm build
-pnpm preview
+pnpm preview   # generate + serve locally with wrangler dev
+pnpm deploy    # generate + wrangler deploy (needs `wrangler login`)
 ```
 
-Vercel can deploy the repository with framework auto-detection and the default
-`nuxt build` command. The site URL automatically uses Vercel's
-`VERCEL_PROJECT_PRODUCTION_URL`, including the generated `*.vercel.app` domain.
-`NUXT_PUBLIC_SITE_URL` remains available as an optional override.
+Deploys normally run through Cloudflare Workers Builds connected to this
+repository: pushes to `main` deploy to production, other branches get preview
+URLs. Preview builds (`WORKERS_CI_BRANCH` != `main`) are marked noindex.
+`NUXT_PUBLIC_SITE_URL` overrides the default `https://vumht.dev`.
 
 ## Content rules
 

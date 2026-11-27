@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "vumht-dev",
+  "compatibility_date": "2026-11-01",
+  // Static site: `nuxt generate` prerenders everything into .output/public.
+  "assets": {
+    "directory": ".output/public",
+    "not_found_handling": "404-page",
+    "html_handling": "drop-trailing-slash"
+  },
+  "routes": [
+    { "pattern": "vumht.dev", "custom_domain": true },
+    { "pattern": "www.vumht.dev", "custom_domain": true }
+  ],
+  "workers_dev": true,
+  "preview_urls": true
+}
