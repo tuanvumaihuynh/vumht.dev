@@ -5,8 +5,10 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
+    "generate": "nuxt generate",
     "dev": "nuxt dev",
-    "preview": "nuxt preview",
+    "preview": "pnpm generate && wrangler dev",
+    "deploy": "pnpm generate && wrangler deploy",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
     "typecheck": "nuxt typecheck"
@@ -28,7 +30,8 @@
     "@nuxt/eslint": "^1.16.0",
     "eslint": "^10.6.0",
     "typescript": "^6.0.3",
-    "vue-tsc": "^3.3.5"
+    "vue-tsc": "^3.3.5",
+    "wrangler": "^4.168.0"
   },
   "packageManager": "pnpm@11.9.0"
 }

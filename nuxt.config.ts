@@ -1,8 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-const siteUrl = process.env.NUXT_PUBLIC_SITE_URL
-  ?? (process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : undefined)
+const siteUrl = process.env.NUXT_PUBLIC_SITE_URL ?? 'https://vumht.dev'
+
+// Cloudflare Workers Builds sets WORKERS_CI_BRANCH; only main is production.
+const isPreview = Boolean(process.env.WORKERS_CI_BRANCH)
+  && process.env.WORKERS_CI_BRANCH !== 'main'
 
 export default defineNuxtConfig({
   modules: [
@@ -26,12 +27,20 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
 
   site: {
-    ...(siteUrl ? { url: siteUrl } : {}),
+    url: siteUrl,
+    indexable: !isPreview,
     name: 'Vux',
     description: 'Software engineer building secure, observable backend systems with Go and cloud infrastructure.'
   },
 
   compatibilityDate: '2026-06-30',
+
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: ['/', '/about', '/sitemap.xml', '/robots.txt']
+    }
+  },
 
   vite: {
     optimizeDeps: {
@@ -57,9 +66,5 @@ export default defineNuxtConfig({
 
   ogImage: {
     enabled: false
-  },
-
-  robots: {
-    disallow: process.env.VERCEL_ENV === 'preview' ? ['/'] : []
   }
 })
