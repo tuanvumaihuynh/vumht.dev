@@ -36,6 +36,9 @@ export default defineNuxtConfig({
   compatibilityDate: '2026-06-30',
 
   nitro: {
+    // Pin static output: otherwise Nitro auto-detects Workers Builds, switches
+    // to the cloudflare preset and redirects wrangler to a missing server entry.
+    preset: 'static',
     prerender: {
       crawlLinks: true,
       routes: ['/', '/about', '/sitemap.xml', '/robots.txt']
